@@ -111,9 +111,38 @@ Ahora si manos a la obra.
     - [Maximal Margin Classifier]()
     - [Support Vector Classifier]()
     - [Kernels and Support Vector Machines]()
+6. [**Minería de texto**](TextMining.ipynb)
+    - [Vectorización](TextMining.ipynb#Vectorizaci%C3%B3n)
+    - [Bag of Words](TextMining.ipynb#Bag-of-Words)
+    - [Procesamiento y análisis de textos](TextMining.ipynb#Procesamiento-y-an%C3%A1lisis-de-textos)
+    - [¿Que son los NLP?](TextMining.ipynb#%C2%BFQue-son-los-NLP?)
+    - [¿Por que utilizar NLP?](TextMining.ipynb#%C2%BFPor-que-utilizar-NLP?)
+    - [Procesamiento utilizando NLTK](TextMining.ipynb#Procesamiento-utilizando-NLTK)
+        * [Procesamiento de texto crudo](TextMining.ipynb#Procesamiento-de-texto-crudo)
+        * [Tokenization](TextMining.ipynb#Tokenization)
+        * [Otro ejemplo de vectorización o tokenization](TextMining.ipynb#Otro-ejemplo-de-vectorizaci%C3%B3n-o-tokenization)
+        * [Proceso de textos crudos provenientes de internet o con formato HTML](TextMining.ipynb#Proceso-de-textos-crudos-provenientes-de-internet-o-con-formato-HTML)
+        * [Utilizando expresiones regulares](TextMining.ipynb#Utilizando-expresiones-regulares)
+        * [Normalización de textos](TextMining.ipynb#Normalizaci%C3%B3n-de-textos)
+        * [Otro ejemplo de Stemming](TextMining.ipynb#Otro-ejemplo-de-Stemming)
+        * [Etiquetado o Tagging](TextMining.ipynb#Etiquetado-o-Tagging)
+        * [Clasificando Texto](TextMining.ipynb#Clasificando-Texto)
+        * [Lemmatization](TextMining.ipynb#Lemmatization)
+        * [Stopword Removal](TextMining.ipynb#Stopword-Removal)
+        * [Named Entity Recognition](TextMining.ipynb#Named-Entity-Recognition)
+        * [Term Frequency - Inverse Document Frequency (TF-IDF)](TextMining.ipynb#Term-Frequency---Inverse-Document-Frequency----TF-IDF)
+        * [LDA - Latent Dirichlet Allocation](TextMining.ipynb#LDA---Latent-Dirichlet-Allocation)
+        * [EXAMPLE: Automatically summarize a document](TextMining.ipynb#EXAMPLE:-Automatically-summarize-a-document)
+        * [Simplified Text Processing](TextMining.ipynb#Simplified-Text-Processing)
+        * [Data Science Toolkit Sentiment](TextMining.ipynb#Data-Science-Toolkit-Sentiment)
+    - [Uso de la librería Gensim](TextMining.ipynb#Uso-de-la-librer%C3%ADa-Gensim)
+        * [Corpus Streaming – Un documento a la vez](TextMining.ipynb#Corpus-Streaming-%E2%80%93-Un-documento-a-la-vez)
+    - [Ejemplo de Análisis de Sentimientos en Competencia Kaggle](TextMining.ipynb#Ejemplo-de-An%C3%A1lisis-de-Sentimientos-en-Competencia-Kaggle)
+    - [Graficando Texto - WorldCloud](TextMining.ipynb#Gr%C3%A1ficando-Textos)
+    
     
 ## Próximos temas...
-A continuación se presentan algunos de temas importantes ó secciones que se irán agregando poco a poco.
+A continuación se presentan algunos de los temas importantes ó secciones que se irán agregando poco a poco.
 Estos temas corresponden a las clases magistrales y el libro guía de ISLR mencionado al comienzo. Stay tune!!!
 
 **Chapter 5: Resampling Methods**
