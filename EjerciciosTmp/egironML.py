@@ -33,11 +33,23 @@ description = "Clase con funciones predefinidas para realizar Análisis Explorat
 author = "Ernesto Girón E."
 
 # Define some global variables:
-numberone = 1
+# numberone = 1
 
-# define some functions
-def timesfour(input):
-    print (input * 4)
+def run_kfold(clf, X, y):
+    kf = KFold(n_splits=10, shuffle=False, random_state=35)
+    outcomes = []
+    fold = 0
+    for train_index, test_index in kf.split(X):
+        fold += 1
+        X_train, X_test = X.values[train_index], X.values[test_index]
+        y_train, y_test = y.values[train_index], y.values[test_index]
+        clf.fit(X_train, y_train)
+        predictions = clf.predict(X_test)
+        accuracy = accuracy_score(y_test, predictions)
+        outcomes.append(accuracy)
+        print("Grupo {0} precisión: {1}".format(fold, accuracy))     
+    mean_outcome = np.mean(outcomes)
+    print("Precisión promedio: {0}".format(mean_outcome)) 
 
 class EDA:
     def __init__(self):
@@ -97,7 +109,7 @@ class EDA:
         df[col] = df[col].str.replace(txt,new_txt)
     
     def hasNull(df):
-        return df.isnull().sum()
+        return print(df.isnull().sum())
     
     def delduplicates(df):
         l1 = len(df)
@@ -106,6 +118,12 @@ class EDA:
 
     def clean_data(df):
         delduplicates(df)
+    
+    def clean_dataset(df):
+        assert isinstance(df, pd.DataFrame), "df needs to be a pd.DataFrame"
+        df.dropna(inplace=True)
+        indices_to_keep = ~df.isin([np.nan, np.inf, -np.inf]).any(1)
+        return df[indices_to_keep].astype(np.float64)
     
     # Observar todas las columnas en el juego de datos
     def printall(X, max_rows=10):
@@ -116,23 +134,36 @@ class EDA:
         """
         Similar a .describe() de pandas, pero devulve los resultados para variables categóricas unicamente
         """
-        display(HTML(X[X.columns[X.dtypes== "object"]].describe().to_html()))
+        try:
+            display(HTML(X[X.columns[X.dtypes== "object"]].describe().to_html()))
+        except TypeError:
+            return print("No hay variables categóricas")
     
     def display_info_numericas(X):
         # Obtenemos las variables númericas seleccionando solamente las variables que no son de tipo "object"
-        X.info() # Muestra los tipos de datos
-        numeric_variables = list(X.dtypes[X.dtypes != "object"].index)
-        X[numeric_variables].head()
+        #X.info() # Muestra los tipos de datos
+        #numeric_variables = list(X.dtypes[X.dtypes != "object"].index)
+        #X[numeric_variables].head()
+        try:
+            display(HTML(X[X.columns[X.dtypes!= "object"]].describe().to_html()))
+        except TypeError:
+            return print("No hay variables númericas")
 
-    # categorical_variables = ['sex', 'cabin', 'embarked']
-    def create_dummies(categorical_variables):
+    def create_dummies(df, categorical_variables):
+        '''
+        Como todas las variables tienen mas de 2 valores en sus atributos, podemos usar la función get_dummies de pandas.
+        De lo contrario solo debemos utilizar "factorize", para crear variables nominales binarias a numericas;
+        de igual modo para variables categóricas con más de 2 valores pero "ordinales"
+        '''
         for variable in categorical_variables:
-            # Crear variables dummy 
-            dummies = pd.get_dummies(X[variable], prefix=variable).iloc[:, 1:]
-            # Update X para incluir las dummies y eliminar la variable principal
-            X = pd.concat([X, dummies], axis=1)
-            X.drop([variable], axis=1, inplace=True) # Eliminar las variables categóricas
-
+            # Crear variables dummy
+            if (variable in df.columns):
+                dummies = pd.get_dummies(df[variable], prefix=variable).iloc[:, 1:]
+                # Update X para incluir las dummies y eliminar la variable principal
+                df = pd.concat([df, dummies], axis=1)
+                df.drop([variable], axis=1, inplace=True) # Eliminar las variables categóricas
+        
+        return df
 
     def graficar_importancia(X, regr):
         feature_importance = regr.feature_importances_*100
@@ -154,9 +185,7 @@ class EDA:
         plt.xticks([1,2,3,4])
         plt.legend(loc=2)
     
-    def plot_confusion_matrix(cm, classes,
-                          normalize=False,
-                          title='Confusion matrix',
+    def plot_confusion_matrix(cm, classes, normalize=False, title='Matríz de Confusión',
                               cmap=plt.cm.Blues):
         """
         This function prints and plots the confusion matrix.
@@ -164,9 +193,9 @@ class EDA:
         """
         if normalize:
             cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-            print("Normalized confusion matrix")
+            print("Matríz de Confusión Normalizada")
         else:
-            print('Confusion matrix, without normalization')
+            print('Matríz de Confusión sin Normalización')
 
         print(cm)
         plt.imshow(cm, interpolation='nearest', cmap=cmap)
@@ -186,4 +215,23 @@ class EDA:
         plt.ylabel('True label')
         plt.xlabel('Predicted label')
 
+    def save_data():
+        X.to_csv('data/data_train_test_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        y_all.to_csv('data/data_y_all_test_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        y_4f.to_csv('data/data_y_4f_test_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        y_bin.to_csv('data/data_y_bin_test_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        ataques_10perc.to_csv('data/data_train_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        ataques_correg_test_10perc.to_csv('data/data_test_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        ataques_correg_test_10percAll.to_csv('data/data_10per_test_preprocessed.csv', sep=',', decimal='.', header=True, index=False)
+        # Guardamos un archivo CSV con las 40 variables mas importantes
+        feature_selected = pd.concat([X_train[X_train.columns[indices][:40]], y_train], axis=1)
+        feature_selected_small = pd.concat([X_train[X_train.columns[indices][:15]], y_train], axis=1)
+        feature_selected_small_var5 = pd.concat([X_train[X_train.columns[indices][:5]], y_train], axis=1)
+
+        feature_selected.to_csv('data/data_train_preprocessed_40var.csv', sep=',', decimal='.', header=True, index=False)
+        feature_selected_small.to_csv('data/data_train_preprocessed_15var.csv', sep=',', decimal='.', header=True, index=False)
+        feature_selected_small_var5.to_csv('data/data_train_preprocessed_5var.csv', sep=',', decimal='.', header=True, index=False)
     
+
+
+                                                    
