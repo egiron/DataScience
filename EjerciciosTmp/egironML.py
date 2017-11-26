@@ -114,7 +114,8 @@ class EDA:
     def delduplicates(df):
         l1 = len(df)
         df.drop_duplicates(inplace=True)
-        print("Eliminó %i observaciones de un total de %i" % (len(df), l1))
+        print("Eliminó %i observaciones de un total de %i" % ((l1-len(df)), l1))
+        print("Nuevas dimensiones: ", df.shape)
 
     def clean_data(df):
         delduplicates(df)
@@ -138,6 +139,11 @@ class EDA:
             display(HTML(X[X.columns[X.dtypes== "object"]].describe().to_html()))
         except TypeError:
             return print("No hay variables categóricas")
+
+    def balanced_spl_by(df, lblcol, uspl=True):
+        datas_l = [ df[df[lblcol]==l].copy() for l in list(set(df[lblcol].values)) ]
+        lsz = [f.shape[0] for f in datas_l ]
+        return pd.concat([f.sample(n = (min(lsz) if uspl else max(lsz)), replace = (not uspl)).copy() for f in datas_l ], axis=0 ).sample(frac=1) 
     
     def display_info_numericas(X):
         # Obtenemos las variables númericas seleccionando solamente las variables que no son de tipo "object"
@@ -148,6 +154,16 @@ class EDA:
             display(HTML(X[X.columns[X.dtypes!= "object"]].describe().to_html()))
         except TypeError:
             return print("No hay variables númericas")
+    
+    #A helper method for pretty-printing linear models
+    def pretty_print_linear(coefs, names = None, sort = False):
+        if (names == None):
+            names = ["X%s" % x for x in range(len(coefs))]
+        lst = zip(coefs, names)
+        if sort:
+            lst = sorted(lst,  key = lambda x:-np.abs(x[0]))
+        return " + ".join("%s * %s" % (round(coef, 3), name) for coef, name in lst)
+
 
     def create_dummies(df, categorical_variables):
         '''
