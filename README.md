@@ -11,6 +11,51 @@ Recuerde que estas notas son personales y no constituyen un tutorial o curso en 
 
 Ahora si manos a la obra.
 
+## Aprendizaje Estadístico
+
+Aunque el término aprendizaje estadístico (_Statistical Learning_) es relativamente nuevo, muchos de los conceptos que lo fundamentan se desarrollaron hace mucho tiempo.
+
+> A principios del siglo XIX, **Legendre y Gauss** publicaron artículos sobre el método de los mínimos cuadrados, que implementaron la forma más antigua de lo que ahora se conoce como _regresión lineal_. El enfoque se aplicó primero 
+con éxito a los problemas de la astronomía. La regresión lineal se utiliza hoy día en muchos campos de diferentes 
+disciplinas.
+
+Para llevar un orden en lo que vamos aprendiendo, seguiremos el texto "**An Introduction to Statistical Learning with Applications in R**", de _Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani_. Este puede ser descargado de la [página del autor](http://www-bcf.usc.edu/~gareth/ISL/). 
+
+![Libro ISLR](./assets/ISLCover.jpg)
+
+This book provides an introduction to statistical learning methods. It is aimed for upper level undergraduate students, masters students and Ph.D. students in the non-mathematical sciences. The book also contains a number of R labs with detailed explanations on how to implement the various methods in real life settings, and should be a valuable resource for a practicing data scientist.
+
+De igual modo utilizaremos parte del material del profesor **Elkin A. Castaño V.** que ha traducido al español gran parte del texto. Este material fue facilitado en el [Diplomado en Ciencia de Datos: Data Mining de la Universidad del Valle](http://escuelaestadistica.univalle.edu.co/diplomado-data-mining), Cali - Colombia.
+
+El Data Mining ( Minería de Datos) se presenta en la actualidad como una nueva alternativa, que permite explorar grandes bases de datos, de manera automática o semiautomática, con el objetivo de encontrar patrones repetitivos, tendencias o reglas que expliquen el comportamiento de los datos en un determinado contexto, con el fin de que puedan usarse para predecir comportamientos futuros, transformando los datos en conocimiento proactivo, para la toma de decisiones de empresas públicas y privadas, científicos, universidades, entre otros.
+
+### A quienes va dirigido estas notas
+
+Este curso está dirigido a las personas que están interesadas en el empleo de métodos estadísticos para la modelación y la predicción a partir de datos. Este grupo de personas no solamente incluye a científicos, ingenieros, analistas de datos, o analistas cuantitativos, sino también a individuos menos técnicos en campos no-cuantitativos tales como las ciencias sociales o los negocios. Se espera que el participante haya tenido por lo menos un curso elemental en Estadística. El nivel matemático del curso es modesto y no se requiere un conocimiento detallado del álgebra matricial.
+
+La comunidad de usuarios de las técnicas de aprendizaje estadístico ha venido creciendo y e incluye individuos con una gama más amplia de intereses y formaciones. Es importante que este grupo heterogéneo sea capaz de comprender los modelos, sus alcances y las fortalezas y debilidades de los diversos enfoques. Pero para este público, muchos de los detalles técnicos de los métodos de aprendizaje estadístico, como los algoritmos de optimización y las propiedades teóricas, no son de interés primordial. Estos estudiantes no necesitan una comprensión profunda de estos aspectos para convertirse en usuarios conocedores de las diversas metodologías, y para contribuir a sus campos de trabajo a través del uso de herramientas de aprendizaje estadístico.
+
+Esta introducción al aprendizaje estadístico se basa en las siguientes cuatro premisas.
+
+1. Muchos métodos de aprendizaje estadístico son relevantes y útiles en una amplia gama de disciplinas académicas y no académicas, más allá de la ciencia Estadística. 
+
+2. El aprendizaje estadístico no debe ser visto como una serie de cajas negras.
+
+3. Si bien es importante saber qué trabajo realiza cada engranaje, no es necesario tener las habilidades para construir la máquina dentro de la caja.
+
+4. Suponemos que el lector está interesado en aplicar métodos de aprendizaje estadístico a problemas del mundo real. 
+
+---
+Si desea tener una introduccíon un poco mas detallada puede acceder a los videos y archivos de presentación que soportan el curso de Statistical Learning dictados por el Dr. Hastie y el Dr. Tibshirani discuss.
+
+* [Presentación en PDF](https://lagunita.stanford.edu/c4x/HumanitiesScience/StatLearning/asset/introduction.pdf)
+* [Opening Remarks and Examples](https://www.youtube.com/watch?v=2wLfFB_6SKI) (Video - duración 18:18)
+[![](https://img.youtube.com/vi/2wLfFB_6SKI/0.jpg)](https://www.youtube.com/watch?v=2wLfFB_6SKI)
+* [Supervised and Unsupervised Learning](https://www.youtube.com/watch?v=LvaTokhYnDw) (Video - duración 12:12)
+[![](https://img.youtube.com/vi/LvaTokhYnDw/0.jpg)](https://www.youtube.com/watch?v=LvaTokhYnDw)
+
+
+
 ### Análisis Inteligente de Datos
 
 1. [**Regresión lineal**](Regresion%20Lineal.ipynb#Regresio%CC%81n-Lineal)
@@ -108,9 +153,7 @@ Ahora si manos a la obra.
         * [Boosting](Random%20Forest.ipynb#Boosting)
         * [Bagging y Random Forests en R](Random%20Forest.ipynb#Bagging-y-Random-Forests-en-R)
 5. [**Maquínas de Véctores Soporte - (SVM)**](SVM.ipynb)
-    - [Maximal Margin Classifier]()
-    - [Support Vector Classifier]()
-    - [Kernels and Support Vector Machines]()
+    
 6. [**Minería de texto**](TextMining.ipynb)
     - [Vectorización](TextMining.ipynb#Vectorizaci%C3%B3n)
     - [Bag of Words](TextMining.ipynb#Bag-of-Words)
@@ -132,7 +175,7 @@ Ahora si manos a la obra.
         * [Named Entity Recognition](TextMining.ipynb#Named-Entity-Recognition)
         * [Term Frequency - Inverse Document Frequency (TF-IDF)](TextMining.ipynb#Term-Frequency---Inverse-Document-Frequency----TF-IDF)
         * [LDA - Latent Dirichlet Allocation](TextMining.ipynb#LDA---Latent-Dirichlet-Allocation)
-        * [EXAMPLE: Automatically summarize a document](TextMining.ipynb#EXAMPLE:-Automatically-summarize-a-document)
+        * [EXAMPLE Automatically summarize a document](TextMining.ipynb)
         * [Simplified Text Processing](TextMining.ipynb#Simplified-Text-Processing)
         * [Data Science Toolkit Sentiment](TextMining.ipynb#Data-Science-Toolkit-Sentiment)
     - [Uso de la librería Gensim](TextMining.ipynb#Uso-de-la-librer%C3%ADa-Gensim)
@@ -140,43 +183,4 @@ Ahora si manos a la obra.
     - [Ejemplo de Análisis de Sentimientos en Competencia Kaggle](TextMining.ipynb#Ejemplo-de-An%C3%A1lisis-de-Sentimientos-en-Competencia-Kaggle)
     - [Graficando Texto - WorldCloud](TextMining.ipynb#Gr%C3%A1ficando-Textos)
     
-    
-## Próximos temas...
-A continuación se presentan algunos de los temas importantes ó secciones que se irán agregando poco a poco.
-Estos temas corresponden a las clases magistrales y el libro guía de ISLR mencionado al comienzo. Stay tune!!!
-
-**Chapter 5: Resampling Methods**
-
-    Estimating Prediction Error and Validation Set Approach
-    K-fold Cross-Validation
-    Cross-Validation: The Right and Wrong Ways
-    The Bootstrap
-    More on the Bootstrap
-    Lab: Cross-Validation
-    Lab: The Bootstrap
-
-**Chapter 6: Linear Model Selection and Regularization**
-
-    Linear Model Selection and Best Subset Selection
-    Forward Stepwise Selection
-    Backward Stepwise Selection
-    Estimating Test Error Using Mallow’s Cp, AIC, BIC, Adjusted R-squared
-    Estimating Test Error Using Cross-Validation
-    Shrinkage Methods and Ridge Regression
-    The Lasso
-    Tuning Parameter Selection for Ridge Regression and Lasso
-    Dimension Reduction
-    Principal Components Regression and Partial Least Squares
-    Lab: Best Subset Selection
-    Lab: Forward Stepwise Selection and Model Selection Using Validation Set
-    Lab: Model Selection Using Cross-Validation
-    Lab: Ridge Regression and Lasso
-
-**Chapter 7: Moving Beyond Linearity (slides, playlist)**
-
-    Polynomial Regression and Step Functions
-    Piecewise Polynomials and Splines
-    Smoothing Splines
-    Local Regression and Generalized Additive Models
-    Lab: Polynomials
-    Lab: Splines and Generalized Additive Models
+   
